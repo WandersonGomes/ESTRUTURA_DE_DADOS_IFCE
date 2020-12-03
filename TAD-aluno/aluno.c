@@ -1,7 +1,12 @@
 //IMPLEMENTACAO DAS FUNCOES
-#include <stdio.h>
-#include <stdlib.h>
 #include "aluno.h"
+
+struct aluno {
+    char nome[QTD_CARACTERES_NOME];
+    int matricula;
+    char turma[QTD_CARACTERES_NOME];
+    float notas[3];
+};
 
 //FUNCOES AUXILIARES
 int ehLetra(char caractere) {
@@ -10,6 +15,8 @@ int ehLetra(char caractere) {
     if ((caractere >= 'A') && (caractere <= 'Z'))
         return 1;
     if (caractere == ' ')
+        return 1;
+    if ((caractere >= '0') && (caractere <= '9'))
         return 1;
     return 0;
 }
@@ -50,28 +57,28 @@ PAluno criarAluno() {
 }
 
 PAluno criarAlunos(int quantidade){
-    return malloc(sizeof(Aluno) * quantidade);
+    return (PAluno) malloc(sizeof(Aluno) * quantidade);
 }
 
-void lerDadosAluno(PAluno aluno) {
+void lerDadosAluno(PAluno aluno, int indice) {
     int i = 0;
 
     printf("Informe o nome do aluno: ");
-    lerString(aluno->nome, QTD_CARACTERES_NOME);
+    lerString(aluno[indice].nome, QTD_CARACTERES_NOME);
 
     do {
         printf("Informe a matricula do aluno: ");
-        scanf("%d", &aluno->matricula);
-        if (aluno->matricula <= 0) {
+        scanf("%d", &aluno[indice].matricula);
+        if (aluno[indice].matricula <= 0) {
             printf("Error: valor invalido!\nTente novamente.\n");
         }
-    } while (aluno->matricula <= 0);
+    } while (aluno[indice].matricula <= 0);
 
     printf("Informe a turma do aluno: ");
-    lerString(aluno->turma, QTD_CARACTERES_NOME);
+    lerString(aluno[indice].turma, QTD_CARACTERES_NOME);
 
     for(; i < 3; i++) {
-        lerNota(&aluno->notas[i], i+1);
+        lerNota(&aluno[indice].notas[i], i+1);
     }
 }
 
@@ -87,17 +94,17 @@ int situacaoAluno(Aluno aluno) {
     }
 }
 
-void imprimirDadosAluno(Aluno aluno) {
-    printf("Nome: %s\n", aluno.nome);
-    printf("Matricula: %d\n", aluno.matricula);
-    printf("Turma: %s\n", aluno.turma);
-    printf("Nota 1: %.2f\n", aluno.notas[0]);
-    printf("Nota 2: %.2f\n", aluno.notas[1]);
-    printf("Nota 3: %.2f\n", aluno.notas[2]);
-    printf("Media: %.2f\n", calcularMediaAluno(aluno));
+void imprimirDadosAluno(PAluno aluno, int indice) {
+    printf("Nome: %s\n", aluno[indice].nome);
+    printf("Matricula: %d\n", aluno[indice].matricula);
+    printf("Turma: %s\n", aluno[indice].turma);
+    printf("Nota 1: %.2f\n", aluno[indice].notas[0]);
+    printf("Nota 2: %.2f\n", aluno[indice].notas[1]);
+    printf("Nota 3: %.2f\n", aluno[indice].notas[2]);
+    printf("Media: %.2f\n", calcularMediaAluno(aluno[indice]));
 
     printf("Situacao: ");
-    if (situacaoAluno(aluno)) {
+    if (situacaoAluno(aluno[indice])) {
         printf("Aprovado\n");
     } else {
         printf("Reprovado\n");

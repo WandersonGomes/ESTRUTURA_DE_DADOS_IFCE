@@ -1,26 +1,23 @@
 //INTERFACE TAD
-#ifndef INCLUDED_ALUNO_H
-#define INCLUDED_ALUNO_H
+#ifndef __INCLUDED_ALUNO_H
+#define __INCLUDED_ALUNO_H
 
+//DEPENDENCIAS
+#include <stdio.h>
+#include <stdlib.h>
+
+//CONSTANTES
 #define MEDIA_APROVACAO 7.0
 #define QTD_CARACTERES_NOME 31
-
-//ESTRUTURA DO ALUNO
-struct aluno {
-    char nome[QTD_CARACTERES_NOME];
-    int matricula;
-    char turma[QTD_CARACTERES_NOME];
-    float notas[3];
-};
 
 typedef struct aluno Aluno, *PAluno;
 
 PAluno criarAluno();
 PAluno criarAlunos(int quantidade);
-void lerDadosAluno(PAluno aluno);
+void lerDadosAluno(PAluno aluno, int indice);
 float calcularMediaAluno(Aluno aluno);
 int situacaoAluno(Aluno aluno);
-void imprimirDadosAluno(Aluno aluno);
+void imprimirDadosAluno(PAluno aluno, int indice);
 void liberarAluno(PAluno aluno);
 
 #endif

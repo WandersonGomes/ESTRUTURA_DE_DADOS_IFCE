@@ -24,7 +24,6 @@ O projeto deverá ser composto pelos seguintes arquivos:
 ● main.c
 ● makefile - será útil para “ensinar" como compilar e como executar o projeto.
 */
-#include <stdlib.h>
 #include <stdio.h>
 #include "aluno.h"
 
@@ -42,14 +41,14 @@ int main() {
 
     alunos = criarAlunos(quantidade_alunos);
 
-    for (; i < quantidade_alunos; i++) {
+    for (i = 0; i < quantidade_alunos; i++) {
         printf("\nINFORME DADOS DO %d.o ALUNO:\n", i+1);
-        lerDadosAluno(&alunos[i]);
+        lerDadosAluno(alunos, i);
     }
     
     for (i = 0; i < quantidade_alunos; i++) {
         printf("\nDADOS DO %d.o ALUNO:\n", i+1);
-        imprimirDadosAluno(alunos[i]);
+        imprimirDadosAluno(alunos, i);
     }
 
     liberarAluno(alunos);
