@@ -1,7 +1,17 @@
-#include <stdlib.h>
-#include <stdio.h>
-#include <string.h>
 #include "time.h"
+
+//STRUCTS
+struct time {
+    char* nome;
+    char* tecnico;
+    int vitorias;
+    int empates;
+    int derrotas;
+    int gols_marcados;
+    int gols_sofridos;
+    int cartoes_amarelos;
+    int cartoes_vermelhos;
+};
 
 //FUNCOES AUXILIARES
 int ehLetra(char caractere) {
@@ -9,8 +19,11 @@ int ehLetra(char caractere) {
         return 1;
     if ((caractere >= 'A') && (caractere <= 'Z'))
         return 1;
-    if (caractere == ' ')
+    if ((caractere == ' ') || (caractere == '-'))
         return 1;
+    if ((caractere >= '0') && (caractere <= '9'))
+        return 1;
+
     return 0;
 }
 
@@ -29,14 +42,15 @@ int lerDadoInteiroPositivo(char* mensagem) {
 }
 
 //FUNCOES DO TAD
-void lerString(char* string, int quantidade) {
+char* lerString(int quantidade_caracteres) {
     int i = 0;
     char letra = 'a';
-
+    char* string = (char *) malloc(sizeof(char) * quantidade_caracteres);
+    
     while (1) {
         letra = getchar();
 
-        if (((letra == '\n') && (i > 0)) || (i == (quantidade - 1))) {
+        if (((letra == '\n') && (i > 0)) || (i == (quantidade_caracteres - 1))) {
             break;
         }
 
@@ -47,6 +61,8 @@ void lerString(char* string, int quantidade) {
     }
 
     string[i] = '\0';
+
+    return string;
 }
 
 PTime criarTime() {
@@ -55,10 +71,10 @@ PTime criarTime() {
 
 void lerDadosTime(PTime time) {
     printf("Informe o nome do time: ");
-    lerString(time->nome, TAMANHO_NOME_TIME);
+    time->nome = lerString(TAMANHO_NOME_TIME);
 
     printf("Informe o nome do tecnico: ");
-    lerString(time->tecnico, TAMANHO_NOME_TIME);
+    time->tecnico = lerString(TAMANHO_NOME_TIME);
 
     time->vitorias = lerDadoInteiroPositivo("Informe o numero de vitorias: ");
 
