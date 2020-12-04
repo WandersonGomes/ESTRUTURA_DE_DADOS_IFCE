@@ -2,9 +2,9 @@
 #include "aluno.h"
 
 struct aluno {
-    char nome[QTD_CARACTERES_NOME];
+    char* nome;
     int matricula;
-    char turma[QTD_CARACTERES_NOME];
+    char* turma;
     float notas[3];
 };
 
@@ -21,9 +21,10 @@ int ehLetra(char caractere) {
     return 0;
 }
 
-void lerString(char* string, int quantidade) {
+char* lerString(int quantidade) {
     int i = 0;
     char letra = 'a';
+    char* string = (char*) malloc(sizeof(char) * quantidade);
 
     while (1) {
         letra = getchar();
@@ -39,6 +40,8 @@ void lerString(char* string, int quantidade) {
     }
 
     string[i] = '\0';
+    
+    return string;
 }
 
 void lerNota(float* nota, int indice) {
@@ -64,7 +67,7 @@ void lerDadosAluno(PAluno aluno, int indice) {
     int i = 0;
 
     printf("Informe o nome do aluno: ");
-    lerString(aluno[indice].nome, QTD_CARACTERES_NOME);
+    aluno[indice].nome = lerString(QTD_CARACTERES_NOME);
 
     do {
         printf("Informe a matricula do aluno: ");
@@ -75,7 +78,7 @@ void lerDadosAluno(PAluno aluno, int indice) {
     } while (aluno[indice].matricula <= 0);
 
     printf("Informe a turma do aluno: ");
-    lerString(aluno[indice].turma, QTD_CARACTERES_NOME);
+    aluno[indice].turma = lerString(QTD_CARACTERES_NOME);
 
     for(; i < 3; i++) {
         lerNota(&aluno[indice].notas[i], i+1);
