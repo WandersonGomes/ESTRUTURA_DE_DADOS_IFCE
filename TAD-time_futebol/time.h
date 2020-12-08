@@ -1,5 +1,5 @@
-#ifndef __TIME_INCLUDED
-#define __TIME_INCLUDED
+#ifndef _TIME_H
+#define _TIME_H
 
 #define TAMANHO_NOME_TIME 31
 #define PONTO_VITORIA 3

@@ -1,6 +1,6 @@
 //INTERFACE TAD
-#ifndef __INCLUDED_ALUNO_H
-#define __INCLUDED_ALUNO_H
+#ifndef _ALUNO_H
+#define _ALUNO_H
 
 //DEPENDENCIAS
 #include <stdio.h>
