@@ -11,6 +11,8 @@ int isCaractereValid(char caracter) {
         return 1;
     if ((caracter == '.') || (caracter == '!') || (caracter == '?'))
         return 1;
+    if ((caracter >= '0') && (caracter <= '9'))
+        return 1;
     return 0;
 }
 
