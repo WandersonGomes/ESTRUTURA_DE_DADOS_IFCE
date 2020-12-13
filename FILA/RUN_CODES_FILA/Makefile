@@ -5,5 +5,6 @@ all:
 
 clean:
 	rm *.o
+	rm programa
 run:
 	./programa

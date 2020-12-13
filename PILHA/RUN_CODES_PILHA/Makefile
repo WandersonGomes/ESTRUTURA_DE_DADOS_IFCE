@@ -4,5 +4,6 @@ all:
 	gcc -o programa main.o pilha.o
 clean:
 	rm *.o
+	rm programa
 run:
 	./programa

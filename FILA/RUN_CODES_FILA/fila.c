@@ -10,7 +10,7 @@ typedef struct no {
 
 struct fila {
     int qtd_elementos;
-    No* inicio;
+    No* inicio; 
     No* fim;
 };
 

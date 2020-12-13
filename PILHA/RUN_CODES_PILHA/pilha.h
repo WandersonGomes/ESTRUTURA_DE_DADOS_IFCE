@@ -4,7 +4,6 @@
 typedef struct pilha Pilha;
 
 Pilha* criarPilha();
-
 void exibePilha(Pilha* pilha);
 void esvaziarPilha(Pilha* pilha);
 void pushPilha(Pilha* pilha, int valor);
