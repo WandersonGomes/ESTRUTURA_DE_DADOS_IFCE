@@ -34,7 +34,7 @@ char* readString(int size) {
 
     while (1) {
         caracter = getchar();
-        if (((caracter == '\n') && (i > 0)) || (i == size))
+        if (((caracter == '\n') && (i > 0)) || (i == size) || (feof(stdin)))
             break;
         else if (isCaracterValid(caracter)) {
             tmp[i] = caracter;
