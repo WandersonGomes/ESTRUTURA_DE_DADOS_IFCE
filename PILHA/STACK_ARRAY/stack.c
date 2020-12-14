@@ -8,6 +8,7 @@
 #define ERROR_NODE_NOT_CREATE "Node not create."
 
 struct stack {
+    int capacity;
     int size;
     int top;
     int* datas;
@@ -20,7 +21,7 @@ void myLog(int type, char* message) {
 }
 
 //MAIN FUNCTION
-Stack* createStack(int size) {
+Stack* createStack(int capacity) {
     Stack* stack = (Stack*) malloc(sizeof(Stack));
 
     if (stack == NULL) {
@@ -28,13 +29,14 @@ Stack* createStack(int size) {
         return NULL;
     }
 
-    stack->datas = (int*) malloc(sizeof(int)*size);
+    stack->datas = (int*) malloc(sizeof(int)*capacity);
     if (stack->datas == NULL) {
         myLog(ERROR, "Not create stack.");
         return NULL;
     }
 
     stack->size = 0;
+    stack->capacity = capacity;
     stack->top = -1;
 
     return stack;
@@ -43,6 +45,11 @@ Stack* createStack(int size) {
 int pushStack(Stack* stack, int data) {
     if (stack == NULL) {
         myLog(ERROR, ERROR_STACK_NOT_DEFINED);
+        return 0;
+    }
+
+    if (isFullStack(stack)) {
+        myLog(ERROR, "Stack full.\n");
         return 0;
     }
 
@@ -89,6 +96,15 @@ int isEmptyStack(Stack* stack) {
     }
 
     return (stack->size == 0);
+}
+
+int isFullStack(Stack* stack) {
+    if (stack == NULL) {
+        myLog(ERROR, ERROR_STACK_NOT_DEFINED);
+        return INT_MIN;
+    }
+
+    return (stack->size == stack->capacity);
 }
 
 int printStack(Stack* stack) {
