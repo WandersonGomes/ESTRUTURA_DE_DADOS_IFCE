@@ -1,6 +1,11 @@
 all:
-	gcc -c pilha.c 
+	gcc -c stack.c
 	gcc -c main.c
-	gcc -o program pilha.o main.o
+	gcc -o program stack.o main.o
+
+clean:
 	rm *.o
+	rm program
+
+run:
 	./program
