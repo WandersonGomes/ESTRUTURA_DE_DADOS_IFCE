@@ -153,7 +153,7 @@ int destroyQueue(Queue* queue) {
         return 0;
     }
 
-    while (isEmptyQueue(queue))
+    while (!isEmptyQueue(queue))
         dequeue(queue);
 
     free(queue);

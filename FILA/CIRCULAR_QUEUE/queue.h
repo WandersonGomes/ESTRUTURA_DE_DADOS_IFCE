@@ -11,6 +11,7 @@ int rearQueue(Queue* queue);
 int isEmptyQueue(Queue* queue);
 int sizeQueue(Queue* queue);
 int printQueue(Queue* queue);
+int rotateQueue(Queue* queue);
 int destroyQueue(Queue* queue);
 
 #endif

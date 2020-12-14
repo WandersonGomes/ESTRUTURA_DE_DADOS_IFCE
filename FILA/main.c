@@ -31,6 +31,13 @@ int main() {
     printQueue(queue);
     printf("\n");
 
+    while (!isEmptyQueue(queue)) {
+        printf("Queue: ");
+        printQueue(queue);
+        printf("\n");
+        dequeue(queue);
+    }
+
     destroyQueue(queue);
     return 0;
 }

@@ -27,6 +27,14 @@ int main() {
     printf("Enqueue 11\n");
     enqueue(queue, 11);
 
+    for (i = 0; i < 11; i++) {
+        rotateQueue(queue);
+        printf("Queue rotate: ");
+        printQueue(queue);
+        printf("\n");
+    }
+
+
     printf("Queue: ");
     printQueue(queue);
     printf("\n");

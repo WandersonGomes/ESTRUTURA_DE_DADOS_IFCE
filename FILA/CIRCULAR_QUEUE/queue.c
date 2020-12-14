@@ -62,7 +62,8 @@ int enqueue(Queue* queue, int data) {
         queue->rear->next = new;
         queue->rear = new;
     }
-    
+
+    queue->rear->next = queue->front;
     queue->size++;
 
     return 1;
@@ -80,6 +81,7 @@ int dequeue(Queue* queue) {
     Node* temporary = queue->front;
     int result = temporary->data;
     queue->front = queue->front->next;
+    queue->rear->next = queue->front;
     free(temporary);
     queue->size--;
 
@@ -141,9 +143,29 @@ int printQueue(Queue* queue) {
         return 0;
     
     Node* current = NULL;
-    for(current = queue->front; current != NULL; current = current->next)
-        printf(" %d", current->data);
+
+    current = queue->front;
     
+    do {
+        printf(" %d", current->data);
+        current = current->next;
+    } while (current != queue->front);
+    
+    return 1;
+}
+
+int rotateQueue(Queue* queue) {
+    if (queue == NULL) {
+        myLog(ERROR, ERROR_QUEUE_NOT_DEFINED);
+        return INT_MIN;
+    }
+
+    if (isEmptyQueue(queue))
+        return INT_MIN;
+    
+    queue->front = queue->front->next;
+    queue->rear = queue->rear->next;
+
     return 1;
 }
 
@@ -153,7 +175,7 @@ int destroyQueue(Queue* queue) {
         return 0;
     }
 
-    while (isEmptyQueue(queue))
+    while (!isEmptyQueue(queue))
         dequeue(queue);
 
     free(queue);
