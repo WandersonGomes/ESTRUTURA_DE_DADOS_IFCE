@@ -1,8 +1,7 @@
 all:
 	gcc -c lista.c
 	gcc -c main.c
-	gcc -c leitura.c
-	gcc -o program lista.o main.o leitura.o
+	gcc -o program lista.o main.o
 
 clean:
 	rm *.o

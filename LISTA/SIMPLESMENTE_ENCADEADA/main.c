@@ -1,70 +1,25 @@
 #include "lista.h"
-#include "leitura.h"
 #include <stdio.h>
-#include <string.h>
 
 int main() {
     List* list = createList();
-    int number_words = 0;
-    char* input = NULL;
-    char* option = NULL;
-    char* data = NULL;
-    char* index = NULL;
+    int i = 0, indice = 0;
 
-    while (1) {
-        input = readString(15);
+    for (i = 0; i < 10; i++)
+        insertStartList(list, i);
+    for (i = 0; i < 10; i++)
+        insertStartList(list, i);
+    
+    insertEndList(list, 19);
 
-        number_words = countWords(input);
-
-        option = getWorldString(input, 1, number_words);
-        if (number_words > 1)
-            data = getWorldString(input, 2, number_words);
-        if (number_words > 2)
-            index = getWorldString(input, 3, number_words);
-
-        if (!strcmp(option, "-s")) {
-            printList(list);
-            break;
-        }
-
-        if (!strcmp(option, "-c"))
-            emptyList(list);
-        
-        if (!strcmp(option, "-a")) {
-            if (number_words == 2)
-                insertList(list, stringToInteger(data));
-            else
-                insertIndexList(list, stringToInteger(data), stringToInteger(index));
-        }
-
-        if (!strcmp(option, "-ap")) {
-            insertIndexList(list, stringToInteger(data), stringToInteger(index));
-        }
-
-        if (!strcmp(option, "-r")) {
-            removeValueElementList(list, stringToInteger(data));
-        }
-
-        if (!strcmp(option, "-m")) 
-            printf("%d\n", maxList(list));
-        
-        if (!strcmp(option, "-sl"))
-            printf("%d\n", lastList(list));
-
-        if (!strcmp(option, "-sf"))
-            printf("%d\n", firsttList(list));
-        
-        if (!strcmp(option, "-ss"))
-            printf("%d\n", sizeList(list));
-
-        if (!strcmp(option, "-sg")) {
-            printf("%d\n", countLargerElementList(list, stringToInteger(data)));
-        }
-
-        clearString(input);
+    while (indice > -1) {
+        printf("Lista: ");
+        printList(list);
+        scanf("%d", &indice);
+        printf("%d\n", countGreatValueList(list, 19));
     }
 
-    clearList(list);
-    
+    destroyList(list);
+
     return 0;
 }
