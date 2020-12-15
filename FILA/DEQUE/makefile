@@ -1,7 +1,7 @@
 all:
 	gcc -c main.c
-	gcc -c queue.c
-	gcc -o program queue.o main.o
+	gcc -c deque.c
+	gcc -o program deque.o main.o
 
 clean:
 	rm *.o
